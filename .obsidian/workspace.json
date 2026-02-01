@@ -11,13 +11,14 @@
             "id": "626074f31beed0b0",
             "type": "leaf",
             "state": {
-              "type": "bases",
+              "type": "split-diff-view",
               "state": {
-                "file": "Untitled.base",
-                "viewName": "Table"
+                "aFile": ".obsidian/plugins/obsidian-git/obsidian_askpass.sh",
+                "bFile": ".obsidian/plugins/obsidian-git/obsidian_askpass.sh",
+                "aRef": ""
               },
-              "icon": "lucide-table",
-              "title": "Untitled"
+              "icon": "diff",
+              "title": "Diff: obsidian_askpass.sh  (Working Tree)"
             }
           }
         ]
@@ -193,7 +194,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "d205f385809b8b75",
+  "active": "626074f31beed0b0",
   "lastOpenFiles": [
     "PXE/vsftp.md",
     "PXE/PXE DHCP Option.md",
