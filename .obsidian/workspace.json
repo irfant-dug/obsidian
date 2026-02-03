@@ -4,24 +4,39 @@
     "type": "split",
     "children": [
       {
-        "id": "0203f370d005cc85",
+        "id": "d79b6001edcb7cf1",
         "type": "tabs",
         "children": [
           {
-            "id": "626074f31beed0b0",
+            "id": "ead9dac5b822ac25",
             "type": "leaf",
             "state": {
-              "type": "split-diff-view",
+              "type": "markdown",
               "state": {
-                "aFile": ".obsidian/plugins/obsidian-git/obsidian_askpass.sh",
-                "bFile": ".obsidian/plugins/obsidian-git/obsidian_askpass.sh",
-                "aRef": ""
+                "file": "Lustre/kpetronaslustre build.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "diff",
-              "title": "Diff: obsidian_askpass.sh  (Working Tree)"
+              "icon": "lucide-file",
+              "title": "kpetronaslustre build"
+            }
+          },
+          {
+            "id": "a7baa54f1e1c6c5b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Lustre/kpetronaslustre method.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "kpetronaslustre method"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -194,16 +209,18 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "626074f31beed0b0",
+  "active": "a7baa54f1e1c6c5b",
   "lastOpenFiles": [
-    "PXE/vsftp.md",
-    "PXE/PXE DHCP Option.md",
-    "Untitled.base",
-    "Lustre/Command.md",
     "Lustre/kpetronaslustre build.md",
+    "Lustre/kpetronaslustre method.md",
+    "Bash/sed.md",
+    "Bash/Untitled.md",
+    "Lustre/Command.md",
+    "PXE/vsftp.md",
+    "Untitled.base",
+    "PXE/PXE DHCP Option.md",
     "Bash/Reboot Safe Way.md",
     "Lustre/Lustre Mounting Stuck.md",
-    "Bash/sed.md",
     "Bash/Grep.md",
     "Lustre/lustre.md",
     "Lustre/Mount Lustre.md",
