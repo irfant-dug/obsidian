@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Dug/genders.md",
+                "file": "Bash/awk.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "genders"
+              "title": "awk"
             }
           }
         ],
@@ -212,13 +212,14 @@
   "active": "174895826fcb7b2c",
   "lastOpenFiles": [
     "Bash/sed.md",
+    "Lustre/kpetronaslustre build.md",
+    "Bash/awk.md",
+    "Dug/genders.md",
     "Untitled.base",
     "Bash/Reboot Safe Way.md",
     "Dug/dug.md",
-    "Dug/genders.md",
     "Lustre/Lustre Mounting Stuck.md",
     "Lustre/kpetronaslustre method.md",
-    "Lustre/kpetronaslustre build.md",
     "Bash/Run Process in Background and Detached.md",
     "conflict-files-obsidian-git.md",
     "Untitled 1.base",
