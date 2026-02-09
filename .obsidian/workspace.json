@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "GPU/Check for Missing GPU.md",
+                "file": "Lustre/Command.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Check for Missing GPU"
+              "title": "Command"
             }
           },
           {
@@ -27,12 +27,24 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Bash/awk.md",
-                "mode": "source",
+                "file": "Lustre/kpetronaslustre note.md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "awk"
+              "title": "kpetronaslustre note"
+            }
+          },
+          {
+            "id": "b10f9a10e8530302",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.11.7"
+              },
+              "icon": "lucide-book-up",
+              "title": "Release Notes 1.11.7"
             }
           }
         ],
@@ -171,13 +183,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Untitled.base",
+                "file": "Lustre/kpetronaslustre note.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Untitled"
+              "title": "Outline of kpetronaslustre note"
             }
           },
           {
@@ -209,26 +221,29 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "174895826fcb7b2c",
+  "active": "d205f385809b8b75",
   "lastOpenFiles": [
-    "Bash/sed.md",
+    "Pasted image 20260207161934.png",
+    "Pasted image 20260207161808.png",
+    "Lustre/Command.md",
+    "Lustre/kpetronaslustre note.md",
     "Lustre/kpetronaslustre build.md",
+    "Bash/Grep.md",
+    "GPU/Check for Missing GPU.md",
+    "Bash/bash.md",
+    "Bash/Run Process in Background and Detached.md",
+    "Bash/sed.md",
+    "Bash/Reboot Safe Way.md",
     "Bash/awk.md",
     "Dug/genders.md",
     "Untitled.base",
-    "Bash/Reboot Safe Way.md",
     "Dug/dug.md",
     "Lustre/Lustre Mounting Stuck.md",
     "Lustre/kpetronaslustre method.md",
-    "Bash/Run Process in Background and Detached.md",
     "conflict-files-obsidian-git.md",
     "Untitled 1.base",
-    "GPU/Check for Missing GPU.md",
-    "Bash/Grep.md",
-    "Bash/bash.md",
     "PXE/vsftp.md",
     "PXE/PXE DHCP Option.md",
-    "Lustre/Command.md",
     "Lustre/lustre.md",
     "Lustre/Mount Lustre.md",
     "Dug/Setting up Shared.md",
@@ -242,7 +257,6 @@
     "Bash",
     "PXE",
     "PXE/pxe.md",
-    "Welcome.md",
-    "cumulus.md"
+    "Welcome.md"
   ]
 }
