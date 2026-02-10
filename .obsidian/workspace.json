@@ -28,7 +28,7 @@
               "type": "markdown",
               "state": {
                 "file": "Lustre/kpetronaslustre note.md",
-                "mode": "preview",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
@@ -221,7 +221,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "d205f385809b8b75",
+  "active": "174895826fcb7b2c",
   "lastOpenFiles": [
     "Pasted image 20260207161934.png",
     "Pasted image 20260207161808.png",

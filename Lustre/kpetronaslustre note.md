@@ -41,3 +41,13 @@ msecli -F -U Micron_7500_E3MQ005_release.ubi -n /dev/nvmeX -S 2
 ```
 msecli -F -n /dev/nvmeX
 ```
+
+
+Excerpt
+* /var/log/messages
+```
+Feb  8 01:00:57 kpetronaslustre11 monitoring[30053]: echo -n 2048 > /sys/block/nvme2n1/queue/nr_requests                                                                                                           
+Feb  8 01:00:57 kpetronaslustre11 monitoring[30053]: echo -n 2048 > /sys/block/nvme2n1/queue/read_ahead_kb
+
+Feb  8 01:07:58 kpetronaslustre11 monitoring[30053]: echo -n 2048 > /sys/block/nvme2n1/queue/nr_requests
+```
