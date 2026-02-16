@@ -42,6 +42,16 @@ msecli -F -U Micron_7500_E3MQ005_release.ubi -n /dev/nvmeX -S 2
 msecli -F -n /dev/nvmeX
 ```
 
+* Remove spare zpool
+```
+zpool remove lustre.ssd nvme2n1
+```
+
+* Add back the spare
+```
+zpool add lustre.ssd spare /dev/nvme2n1
+```
+
 
 Excerpt
 * /var/log/messages
