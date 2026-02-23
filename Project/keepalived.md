@@ -16,3 +16,5 @@ dnf install gcc make autoconf automake openssl-devel libnl3-devel     iptables-d
 ```
 firewall-cmd --zone=public --add-rich-rule='rule family="ipv4" destination address="224.0.0.18" protocol value="112" accept' --permanent
 ```
+
+* 
