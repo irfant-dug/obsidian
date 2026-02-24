@@ -34,7 +34,7 @@ nvme reset /dev/nvmeXX
 
 * Upgrade
 ```
-msecli -F -U Micron_7500_E3MQ005_release.ubi -n /dev/nvmeX -S 2
+/d/sw/3ware/msecli/msecli -F -U /d/sw/3ware/msecli/Micron_7500_E3MQ005_release.ubi -n /dev/nvme0 -S 2
 ```
 
 * confirm
