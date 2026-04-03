@@ -11,11 +11,14 @@ Client Side
 
 Server Side
 * **Hardware Reception:** The server NIC receives the packet and uses DMA to write it into the RX Ring Buffer in RAM.
+  
+  Interrupt Coalescing: When the first packet of a burst arrives, the NIC's DMA engine quietly writes it into your server's RAM. Instead of immediately tapping the CPU on the shoulder, the NIC starts a timer and a counter.
+
 * **Hardware Interrupt:** The NIC sends an interrupt to the CPU.
 * **Kernel Processing:** The CPU wakes up (`ksoftirqd`), reads the data from the ring buffer, strips the Ethernet/IP/TCP headers, and verifies checksums. _(This is where your `rx_dropped` bottleneck is currently happening).
 * **Memory Copy 2:** The CPU physically copies the naked payload from the kernel's socket buffer into the Lustre application's user-space buffer.
 * **Storage I/O:** The Lustre daemon finally has the data and writes it to the backend disk (OST)
 
 ***Non-DMA***
-* 
+*  
 
