@@ -16,3 +16,6 @@ Server Side
 * **Memory Copy 2:** The CPU physically copies the naked payload from the kernel's socket buffer into the Lustre application's user-space buffer.
 * **Storage I/O:** The Lustre daemon finally has the data and writes it to the backend disk (OST)
 
+Non-DMA 
+* 
+
