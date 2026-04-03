@@ -93,7 +93,10 @@ Apr  2 17:25:17 tijanet-jumpbox systemd[1]: dbus-:1.1-net.openvpn.v3.backends@1.
 Apr  2 17:25:17 tijanet-jumpbox systemd[1]: dbus-:1.1-net.openvpn.v3.backends@1.service: Unit process 229689 (openvpn3-servic) remains running after unit stopped
 ```
 
-* Possible solution
-```
+* Caused: NetworkManager delete tun0 when the tunnel change state to inactive
 
+* Solution: Tell NetworkManager to ignore tun state change
+```
+[keyfile]
+unmanaged-devices=type:tun
 ```
