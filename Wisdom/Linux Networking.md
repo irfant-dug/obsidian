@@ -29,3 +29,34 @@ In older or much simpler systems (using a method called Programmed I/O), the CPU
     
 -  It would repeat this cycle for every single byte of the payload.
 
+
+* Default parameter. 50nanosecond and Adaptive RX
+```
+[adm_irfant@kpetronaslustre11 ~]$ sudo ethtool -c eth2
+Coalesce parameters for eth2:
+Adaptive RX: on  TX: on
+stats-block-usecs: n/a
+sample-interval: n/a
+pkt-rate-low: n/a
+pkt-rate-high: n/a
+
+rx-usecs: 50
+rx-frames: n/a
+rx-usecs-irq: n/a
+rx-frames-irq: n/a
+
+tx-usecs: 50
+tx-frames: n/a
+tx-usecs-irq: n/a
+tx-frames-irq: n/a
+
+rx-usecs-low: n/a
+rx-frame-low: n/a
+tx-usecs-low: n/a
+tx-frame-low: n/a
+
+rx-usecs-high: 0
+rx-frame-high: n/a
+tx-usecs-high: n/a
+tx-frame-high: n/a
+```
