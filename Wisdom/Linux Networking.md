@@ -12,7 +12,7 @@ Client Side
 Server Side
 * **Hardware Reception:** The server NIC receives the packet and uses DMA to write it into the RX Ring Buffer in RAM.
   
-  Interrupt Coalescing: When the first packet of a burst arrives, the NIC's DMA engine quietly writes it into your server's RAM. Instead of immediately tapping the CPU on the shoulder, the NIC starts a timer and a counter.
+  Interrupt Coalescing: When the first packet of a burst arrives, the NIC's DMA engine quietly writes it into your server's RAM. Instead of immediately tapping the CPU on the shoulder, the NIC starts a timer (default to 50usec) and a counter(default to using Adaptive Algorithm).
 
   The CPU acknowledges the interrupt, wakes up the `ksoftirqd` process, and instantly **tells the NIC to disable all future interrupts for that specific queue.** The CPU keeps polling until it completely empties the RX Ring Buffer (or hits a budget limit)
 
@@ -22,5 +22,10 @@ Server Side
 * **Storage I/O:** The Lustre daemon finally has the data and writes it to the backend disk (OST)
 
 ***Non-DMA***
-*  
+In older or much simpler systems (using a method called Programmed I/O), the CPU was the micromanager of all data transfers.
+*  When a packet arrived, the network card would interrupt the CPU.
+    
+-  The CPU would have to stop whatever it was doing, read the first byte of the packet from the network card, and manually write that byte into system RAM.
+    
+-  It would repeat this cycle for every single byte of the payload.
 
