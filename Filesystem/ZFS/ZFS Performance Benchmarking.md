@@ -1,3 +1,4 @@
+[[ZFS]]
 In raidz3 pool with 20 disks
 
 * Total disks = 20
@@ -6,7 +7,7 @@ In raidz3 pool with 20 disks
 * Disk speed = 250 MB/s
 * Disk IO = 220 IOPS
 ```
-Aggregate Speed = 17 data disks × 250 MB/s = 4,250 MB/s.
+Aggregate Throughput = 17 data disks × 250 MB/s = 4,250 MB/s.
 
 Aggeregate IO = 1 x 220 IOPS = 220 IOPS (raidz3 have IOPS of a single disk)
 ```
