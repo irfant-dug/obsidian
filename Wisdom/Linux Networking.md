@@ -14,6 +14,8 @@ Server Side
   
   Interrupt Coalescing: When the first packet of a burst arrives, the NIC's DMA engine quietly writes it into your server's RAM. Instead of immediately tapping the CPU on the shoulder, the NIC starts a timer and a counter.
 
+  The CPU acknowledges the interrupt, wakes up the `ksoftirqd` process, and instantly **tells the NIC to disable all future interrupts for that specific queue.** The CPU keeps polling until it completely empties the RX Ring Buffer (or hits a budget limit)
+
 * **Hardware Interrupt:** The NIC sends an interrupt to the CPU.
 * **Kernel Processing:** The CPU wakes up (`ksoftirqd`), reads the data from the ring buffer, strips the Ethernet/IP/TCP headers, and verifies checksums. _(This is where your `rx_dropped` bottleneck is currently happening).
 * **Memory Copy 2:** The CPU physically copies the naked payload from the kernel's socket buffer into the Lustre application's user-space buffer.
