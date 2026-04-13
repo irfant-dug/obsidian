@@ -8,6 +8,8 @@ sudo firewall-cmd --reload
 sudo firewall-cmd --zone=public --add-port=80/tcp --permanent
 ```
 
+* 
+
 * Enable denied logging
 ```
 sudo vi /etc/firewalld/firewalld.conf
