@@ -8,3 +8,20 @@ $ sinfo -p h200 -o "%D %t"| column -tNODES  STATE3      resv1      mix11     all
 ```
 scontrol create ReservationName="#317966 applying graphite" StartTime=now Nodes="knod1-5-1,knod1-6-1,knod2-6-19,knod2-7-19,knod2-8-19,knod3-1-1,knod3-2-1,knod4-2-19,knod4-5-19" duration=1000000 User=adm_fiqrim FLAGS=MAINTENANCE,IGNORE_JOBS
 ```
+
+* Delete node from reservation
+```
+ 2. To remove only one node (leaving the reservation active for others):
+  You must update the reservation with a new list of nodes that excludes the one you want to remove.
+
+   1 # 1. Get the current list of nodes
+   2 scontrol show res "#317966 applying graphite"
+   3
+   4 # 2. Update the reservation with the new (shortened) list
+   5 scontrol update ReservationName="#317966 applying graphite" Nodes="knod1-5-1,knod1-6-1,..."
+```
+
+* Cancel Reservation
+```
+
+```
