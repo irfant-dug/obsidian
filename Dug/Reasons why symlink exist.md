@@ -1,0 +1,2 @@
+* A seismic data collector vessel have several gun and many more streamer. There exist a permutation of every gun and streamer. In certain case, when the geophysicist first execute a workflow, they realise that some of the gun-streamer data 
+* To bypass quota
