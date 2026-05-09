@@ -1,5 +1,17 @@
 1. #317746 Conflict in Session
 * Insight database lock. Caused by unexpected Insight shutdown
 * check the .lock, confirm that the lock belong to the user, delete lock
-1. #319123 3ware disk replacement
-* During disk replacement, 
+2. #319123 3ware disk replacement
+* During disk replacement, slot shows unit as:
+```
+  p10   OK             u?   2.73 TB   SATA  10  -            ST33000650NS
+```
+* The unit need to be deleted
+```
+sudo /cluster/bin/tw_cli maint deleteunit c0 u10
+sudo /cluster/bin/tw_cli /c0 rescan noscan
+```
+* Then rescan the bus
+```
+
+```
