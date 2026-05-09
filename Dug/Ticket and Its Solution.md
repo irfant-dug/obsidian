@@ -13,5 +13,6 @@ sudo /cluster/bin/tw_cli /c0 rescan noscan
 ```
 * Then rescan the bus
 ```
-
+sudo /cluster/bin/tw_cli /c0 rescan noscan
+echo 1 > /sys/block/sdk/device/delete
 ```
