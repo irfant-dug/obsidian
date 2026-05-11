@@ -16,8 +16,6 @@ Every host (eg. kmon005, kmon0007) that is sending emails will have an Mail Tran
 ```
 
 The host will send their emails to an SMTP relay server, which is ksmtp1 for KL. ksmtp1 is also running postfix service. The reason why we used a smtp relay server as it make it  easier to set up PTR + SPF + DKIM for email authentication. Failure to do so may result in email going into spam folder, depending on the policy. 
-*ps:
-* Still not sure if there's a need for public A record for ksmtp1
 
 Once ksmtp1 receives the email, it will check the email's recipient domain (dug.com) and send it to the domain's mail server (based on MX record). ksmtp1 will get a confirmation from the email server if the email is successfully received.
 ```
@@ -32,3 +30,6 @@ May  9 15:24:08 ksmtp1 postfix/cleanup[175304]: 4F49620D: message-id=<2026050907
 * status=sent + dsn=2.0.0 = Google accepted the message. ksmtp1 successfully delivered it.
 * 250 2.0.0 OK = Google's SMTP "all good" response.
 * DMARC:Quarantine = Google accepted it but routed it to the spam folder instead of the inbox, because the message failed DMARC checks.
+
+Because we don't set up those PTR + SPF + DKIM email authentication, we have to hardcode the allow inbound IP address to not end up in spam.
+
