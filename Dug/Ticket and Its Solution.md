@@ -16,3 +16,7 @@ sudo /cluster/bin/tw_cli /c0 rescan noscan
 sudo /cluster/bin/tw_cli /c0 rescan noscan
 echo 1 > /sys/block/sdk/device/delete
 ```
+
+3. https://downunder.zendesk.com/agent/tickets/319395
+* Look at perfmon to see which user/desktop is opening the project. Check every desktop to know which one is hanging (holding project lock). 
+* Ask the user to kill their insight
