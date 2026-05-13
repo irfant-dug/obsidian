@@ -1,4 +1,6 @@
 [[lustre]]
+
+claude memory: lustre_rebalance
 ```
 [adm_irfant@kud42 ~]$ cd /kl5/admin/balance
 [adm_irfant@kud42 balance]$ sudo mkdir 20260302-rebalance
