@@ -31,3 +31,22 @@ watch lfs df -h /kl5
 ```
 [root@kud42 20260302-rebalance]# multitail --follow-all --mergeall -Iw "000scratch/logs/*" 1
 ```
+
+There are 5 main stages of Lustre filesystem rebalancing
+
+1. Setting up the scripts
+* copy the scripts
+```
+mkdir /kl6/admin/balance/YYYYMMDD-rebalance
+rsync -aP /d/admin/scripts/lustre/rebalance/ /kl6/admin/balance/YYYYMMDD-rebalance/
+cd /kl6/admin/balance/YYYYMMDD-rebalance/
+```
+* edit config.sh to the targeted fs and specify the queue 
+```
+export FSNAME=kl6
+export PARTITIONS=archive
+```
+* run  01_make_schema.sh as root
+```
+
+```
