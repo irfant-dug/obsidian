@@ -70,4 +70,16 @@
 
   Then use the parent FID with lfs fid2path /kl5 [<parent_fid>] on a Lustre client.
 
-I aq
+
+**TRIAL**
+
+```
+[root@kpetronaslustre45 tmp]# sudo umount lustre/irfanfs-OST0001
+[root@kpetronaslustre45 tmp]# sudo zfs set canmount=on lustre/irfanfs-OST0001
+[root@kpetronaslustre45 tmp]# sudo zfs mount lustre/irfanfs-OST0001
+[root@kpetronaslustre45 0]# sudo ll_decode_filter_fid /lustre/irfanfs-OST0001/O/0/d6/6
+/lustre/irfanfs-OST0001/O/0/d6/6: parent=[0x200000401:0x6d:0x0] stripe=1 stripe_size=1048576 stripe_count=2 layout_version=0 range=0
+[root@kpetronaslustre45 ~]# sudo umount lustre/irfanfs-OST0001
+[root@kpetronaslustre45 ~]# sudo zfs set canmount=off lustre/irfanfs-OST0001
+[root@kpetronaslustre45 ~]# sudo mount -t lustre lustre/irfanfs-OST0001 /lustre/irfanfs-OST0001
+```
