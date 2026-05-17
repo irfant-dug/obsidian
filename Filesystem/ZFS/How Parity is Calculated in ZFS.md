@@ -6,11 +6,11 @@
 * If you write a large file, ZFS will write a "full" stripe: 5 Data + P + Q + R (spanning all 8 disks).
 * If you write a tiny piece of data (e.g., a 4KB file), ZFS might only use 1 data block. Because it is RAIDZ3, it _must_ still write 3 parity blocks to maintain redundancy: 1 Data + P + Q + R
 ### The Array Layout
-- **$D_1$:** `0000 0001`
-- **$D_2$:** `1100 0000` _(Our troublemaker block)_
+- **$D_1$:** `0000 0001` 
+- **$D_2$:** `1100 0000` 
 - **$D_3$:** `0000 0010`
-- **$D_4$:** `0000 0000`
-- **$D_5$:** `0000 0000`
+- **$D_4$:** **`0000 0101`** 
+- **$D_5$:** **`0000 0011`**
 ### P Parity
 * The simplest of them all
 * Calculated using a logical operation called **XOR** (Exclusive OR)
@@ -20,10 +20,10 @@
   0000 0001 (D1) 
   1100 0000 (D2) 
   0000 0010 (D3)
-  0000 0000 (D4)
-⊕ 0000 0000 (D5)
------------------- 
-  1100 0011 (P Parity)
+  0000 0101 (D4)
+⊕ 0000 0011 (D5)
+------------------------ 
+  1100 0101 (P Parity)
 ```
 
 ### Q Parity
