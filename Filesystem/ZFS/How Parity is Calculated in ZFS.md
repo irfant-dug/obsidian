@@ -35,8 +35,8 @@
   0000 0010 (D3)
   0000 0010 (D4)
 ⊕ 0000 0010 (D5)
------------------- 
-  1100 0011 (P Parity)
+- - - - - - - - - - - -
+  0000 0010 (D5)
 ```
 ### PS
 * Even when data is only stripe to one disk, parity P,Q and R still will be calculated, causing large parity overhead
