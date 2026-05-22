@@ -36,5 +36,20 @@ sudo lfs fid2path /kl5
 ## kpetronaslustre42 Disk Replacement
 
 ```
+#umount kpetronaslustre from all client
+ssh kpetronaslustre00
+lshowmount | grep -v lo | sed 's/@tcp$//' | tr '\n' ',' | sed 's/,$/\n/'
+scontrol show hostname ##output of the lshowmount## | tr '\n' ',' | sed 's/,$/\n/' | xargs -I {} pdsh -w {} "sudo kill -9 \$(sudo /bin/lsof /data/epic20 | awk '{ print \$2 }'); sleep 1; sudo /bin/umount /data/epic20"
 
+#umount lustre OST
+ssh kpetronaslustre42
+sudo umount lustre/epic20-OST0019
+sudo umount lustre_2/epic20-OST0059
+
+#mount lustre OST
+ssh kpetronaslustre42
+sudo mount -t lustre/epic20-OST0019 /lustre/epic20-OST0019
+sudo mount -t lustre_2/epic20-OST0059 /lustre_2/epic20-OST0059
 ```
+
+
