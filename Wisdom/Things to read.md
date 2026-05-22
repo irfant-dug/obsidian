@@ -3,3 +3,7 @@
 * https://raw.githubusercontent.com/samlee2015jp/cs_books/main/Systems.Performance.Enterprise.and.the.Cloud.2nd.Edition.2020.12.pdf
 * https://drive.google.com/file/d/102TmS6pvMNnaWaATKIYqrYVT3G8t7jdQ/view?usp=sharing
 * https://pages.ubuntu.com/rs/066-EOV-335/images/Routing-on-the-host-canonical.pdf?version=0
+```
+[adm_irfant@kud174 notes]$ readlink -f slurm.sh 
+/localData/adm_fadm/stow/notes/slurm.sh
+```
