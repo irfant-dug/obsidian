@@ -1,5 +1,5 @@
 * For Raidz3, there are 3 types of parity: P,Q and R. 
-* Unlike traditional hardware RAID, ZFS does not have fixed, rigid stripes or dedicated parity disks.
+* Unlike traditional hardware RAID, ZFS does not have fixed, rigid stripes or dedicated parity disks ().
 * To balance the input/output load, ZFS rotates which disks hold the data and which hold the parity for every single stripe it writes
 
 ## Considering a situation where we have 8-disks RAIDZ3 pool
