@@ -39,7 +39,7 @@ About time I documents and explains the services hosted in the homelab
 
 # gori
 
-## 1. gjump
+## 1. gjump (192.168.0.152)
 ## 2. TrueNAS-VM (192.168.0.153)
 * Running Truenas Scale
 * Serving Pool1 as SMB and NFS
