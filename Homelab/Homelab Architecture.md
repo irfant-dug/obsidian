@@ -24,7 +24,7 @@ About time I documents and explains the services hosted in the homelab
 | 80    | proxy-vm   |
 | 443   | proxy-vm   |
 | 51820 | gwireguard |
-## 6. proxy-vm (192.168.0.205)
+## 6.[[ proxy-vm]] (192.168.0.205)
 * Running nginx reverse proxy
 
 ## 7. tijanet-jumpbox (192.168.0.206)
@@ -35,3 +35,16 @@ About time I documents and explains the services hosted in the homelab
 * Running grafana and connected to DUG through OpenVPN
 
 ## 9. docker-vm
+* Running qbittorent, uptime-kuma, and Librespeed using Docker Compose
+
+# gori
+
+## 1. gjump
+## 2. TrueNAS-VM (192.168.0.153)
+* Running Truenas Scale
+* Serving Pool1 as SMB and NFS
+
+## 2. [[gwireguard]]
+* Should be the one-stop VPN services
+
+## 3. 
