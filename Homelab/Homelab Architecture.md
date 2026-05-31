@@ -30,11 +30,11 @@ About time I documents and explains the services hosted in the homelab
 ## 7. tijanet-jumpbox (192.168.0.206)
 * jumpbox for accessing tijanieserver
 
-## 8. grafana-vm
+## 8. grafana-vm (192.168.0.227)
 * Formerly used to give data to Ms. Chong
 * Running grafana and connected to DUG through OpenVPN
 
-## 9. docker-vm
+## 9. docker-vm (192.168.0.228)
 * Running qbittorent, uptime-kuma, and Librespeed using Docker Compose
 
 # gori
@@ -43,8 +43,12 @@ About time I documents and explains the services hosted in the homelab
 ## 2. TrueNAS-VM (192.168.0.153)
 * Running Truenas Scale
 * Serving Pool1 as SMB and NFS
-
-## 2. [[gwireguard]]
+## 3. [[gwireguard]] (192.168.0.154)
 * Should be the one-stop VPN services
-
-## 3. 
+## 4. gnfs (192.168.0.155)
+* Intended to use for cluster
+## 5. grwt0001 (192.168.0.156)
+* Windows 11 IOT
+* Used for running Windows app
+## 6. grouter (192.168.0.157)
+* Expose cluster to the external network
