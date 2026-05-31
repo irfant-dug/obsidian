@@ -54,6 +54,7 @@ About time I documents and explains the services hosted in the homelab
 * Should be the one-stop VPN services
 ## 4. gnfs (192.168.0.155)
 * Intended to use for cluster
+* /d/sw
 ## 5. grwt0001 (192.168.0.156)
 * Windows 11 IOT
 * Used for running Windows app
