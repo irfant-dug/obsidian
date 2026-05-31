@@ -30,6 +30,13 @@ About time I documents and explains the services hosted in the homelab
 ## 7. tijanet-jumpbox (192.168.0.206)
 * jumpbox for accessing tijanieserver
 
+| Service          | Description                              |
+| ---------------- | ---------------------------------------- |
+| cloudflare-ddns  | Update public.tijanet.com every 1 minute |
+| idrac_fancontrol | Control gori fan speed every 5 minutes   |
+
+* Have a number of services
+
 ## 8. grafana-vm (192.168.0.227)
 * Formerly used to give data to Ms. Chong
 * Running grafana and connected to DUG through OpenVPN
