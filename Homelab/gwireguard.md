@@ -19,3 +19,16 @@ PublicKey = **************************************
 AllowedIPs = 10.168.168.2/32, fd62:86fa:17de::2/128
 ```
 
+* Enable the wg-quick systemd service
+```
+[root@gwireguard zones]# systemctl sudo systemctl enable wg-quick@wg0.service  
+Unknown operation sudo.  
+[root@gwireguard zones]# sudo systemctl enable wg-quick@wg0.service  
+Created symlink /etc/systemd/system/multi-user.target.wants/wg-quick@wg0.service → /usr/lib/systemd/system/wg-quick@.service.  
+[root@gwireguard zones]# sudo systemctl daemon-reload  
+[root@gwireguard zones]# sudo systemctl start wg-quick@wg0  
+[root@gwireguard zones]# systemctl status wg-quick@wg0
+```
+
+* Enable port 51820 in firewalld
+* 
