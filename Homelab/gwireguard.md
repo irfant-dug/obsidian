@@ -31,4 +31,5 @@ Created symlink /etc/systemd/system/multi-user.target.wants/wg-quick@wg0.service
 ```
 
 * Enable port 51820 in firewalld
-* 
+* Ping VPN gateway (172.20.104.1) every 1 hour to keep the OpenVPN connection alive (/etc/cron.hourly/openvpn_keepalive.sh)
+* Set DNS server to gdns0001 (192.168.0.158)
