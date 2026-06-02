@@ -27,8 +27,8 @@
 ```
 
 ### Q Parity
-* ZFS uses **Reed-Solomon coding** over a **Galois Field**
-* 
+* ZFS uses **Reed-Solomon coding** over a **[[Galois Field]]**
+* The irreducible polynomial: `0001 1101`
 * $$Q = (2^0 \cdot D_1) \oplus (2^1 \cdot D_2) \oplus (2^2 \cdot D_3) \oplus (2^3 \cdot D_4) \oplus (2^4 \cdot D_5)$$
 * **D1​ (Shift 0):** `0000 0001`
 * **D2​ (Shift 1):**  Shifting `1100 0000` left triggers an overflow, which gives us `1 1000 0000` wrapping it to **`1001 1101`**.
@@ -50,6 +50,9 @@
 ------------------ 
   1000 1100 (Q Parity)
 ```
+
+### R Parity
+$$R=(2^0⋅D1​)⊕(2^2⋅D2​)⊕(2^4⋅D3​)⊕(26⋅D4​)⊕(28⋅D5​)$$
 ### PS
 * Even when data is only stripe to one disk, parity P,Q and R still will be calculated, causing large parity overhead
 
