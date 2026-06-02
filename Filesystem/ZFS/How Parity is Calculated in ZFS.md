@@ -29,6 +29,12 @@
 ### Q Parity
 * ZFS uses **Reed-Solomon coding** over a **Galois Field**
 * $$Q = (2^0 \cdot D_1) \oplus (2^1 \cdot D_2) \oplus (2^2 \cdot D_3) \oplus (2^3 \cdot D_4) \oplus (2^4 \cdot D_5)$$
+* **D1​ (Shift 0):** `0000 0001`
+* **D2​ (Shift 1):** We already did this one! Shifting `1100 0000` left triggers an overflow, wrapping it to **`1001 1101`**.
+- **D3​ (Shift 2):** `0000 0010` becomes **`0000 1000`**.
+- **D4​ (Shift 3):** `0000 0101` shifts left safely 3 times to become **`0010 1000`**.
+- **D5​ (Shift 4):** `0000 0011` shifts left safely 4 times to become **`0011 0000`**.
+
 ```
   0000 0001 (D1) - no shift
   1100 0000 (D2) 
