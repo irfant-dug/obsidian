@@ -1,0 +1,3 @@
+Évariste Galois (a 19th-century mathematician) invented a system where numbers "wrap around" a maximum limit, creating a closed loop called a Finite Field. You do this by dividing your overgrown number by a specific "prime" number and keeping the remainder.
+
+In Reed-Solomon, shifting bits will caused bit overflow, which exceed the boundaries of a byte (8 bit). Galois Finited Field is a way to represent overflow bits as equivalent 8 bits, thus circumventing bit overflow.  This is done by XOR operation 
