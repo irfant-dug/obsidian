@@ -58,15 +58,23 @@ $$R=(2^0⋅D1​)⊕(2^2⋅D2​)⊕(2^4⋅D3​)⊕(2^6⋅D4​)⊕(2^8⋅D5​
 * **D1​ (Shift 0):** `0000 0001`
 *  **D2​ (Shift 1):**  shifting `1100 0000` twice triggers _two_ overflows, wrapping it to **`0010 0111`**
 ```
-  1000 0000 (Shifted Result) 
+  1000 0000 (First Shift) 
 ⊕ 0001 1101 (Polynomial)
   ------------------ 
   1001 1101 
   
-  0011 1010
+  0011 1010 (Second Shift)
 ⊕ 0001 1101 (Polynomial)
   ------------------ 
-  100 0111 
+  0010 0111 (2 Shift Result)
+```
+* **D3​ (Shift 4):** `0000 0010` safely becomes **`0010 0000`**.
+* **D4​ (Shift 6):** Shifting `0000 0101` trigger overflow `1 0100 0000`
+```
+  0011 1010 (Second Shift)
+⊕ 0001 1101 (Polynomial)
+  ------------------ 
+  0010 0111 (2 Shift Result)
 ```
 ### PS
 * Even when data is only stripe to one disk, parity P,Q and R still will be calculated, causing large parity overhead
