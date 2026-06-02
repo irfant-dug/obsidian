@@ -83,10 +83,20 @@ $$R=(2^0⋅D1​)⊕(2^2⋅D2​)⊕(2^4⋅D3​)⊕(2^6⋅D4​)⊕(2^8⋅D5​
   ------------------ 
   1001 1101 
   
-  0011 1010 (Second Shift)
+  0011 1010 (Shifts 8)
 ⊕ 0001 1101 (Polynomial)
   ------------------ 
   0010 0111 (2 Shift Result)
+```
+
+```
+  0000 0001 (Processed D1) 
+  0010 0111 (Processed D2) 
+  0010 0000 (Processed D3) 
+  0101 1101 (Processed D4) 
+⊕ 0010 0111 (Processed D5) 
+------------------ 
+  0111 1100 (R Parity)
 ```
 ### PS
 * Even when data is only stripe to one disk, parity P,Q and R still will be calculated, causing large parity overhead
