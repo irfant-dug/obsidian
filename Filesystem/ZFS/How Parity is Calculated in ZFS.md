@@ -71,6 +71,18 @@ $$R=(2^0⋅D1​)⊕(2^2⋅D2​)⊕(2^4⋅D3​)⊕(2^6⋅D4​)⊕(2^8⋅D5​
 * **D3​ (Shift 4):** `0000 0010` safely becomes **`0010 0000`**.
 * **D4​ (Shift 6):** Shifting `0000 0101` trigger overflow `1 0100 0000`
 ```
+  0100 0000 (Second Shift)
+⊕ 0001 1101 (Polynomial)
+  ------------------ 
+  0101 1101 (2 Shift Result)
+```
+* **D5​ (Shift 8):** Shifting `0000 0011` trigger 2 overflow
+```
+  1000 0000 (Shifts 7) 
+⊕ 0001 1101 (Polynomial)
+  ------------------ 
+  1001 1101 
+  
   0011 1010 (Second Shift)
 ⊕ 0001 1101 (Polynomial)
   ------------------ 
