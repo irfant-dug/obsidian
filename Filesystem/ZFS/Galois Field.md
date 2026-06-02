@@ -29,7 +29,5 @@ In binary algebra:
 
 1. It must have an odd number of terms. (If it has an even number of terms, it is cleanly divisible by x+1, making it reducible immediately).
 $$Reducible Polynomial: x^2+x+1 = x()$$
-    
 2. It must not be divisible by any degree-2 irreducible polynomial (like x2+x+1).
-    
-3. It must not be divisible by any degree-3 or degree-4 irreducible polynomials.
+3. It must not be divisible by any degree-3 or degree-4 irreducible polynomials
