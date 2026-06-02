@@ -34,7 +34,8 @@
 * **D2​ (Shift 1):**  Shifting `1100 0000` left triggers an overflow, which gives us `1 1000 0000` wrapping it to **`1001 1101`**.
 ```
   1000 0000 (Shifted Result) 
-⊕ 0001 1101 (Polynomial) ------------------ 
+⊕ 0001 1101 (Polynomial)
+  ------------------ 
   1001 1101 (Final safely wrapped block for D2)
 ```
 - **D3​ (Shift 2):** `0000 0010` becomes **`0000 1000`**.
@@ -52,7 +53,21 @@
 ```
 
 ### R Parity
-$$R=(2^0⋅D1​)⊕(2^2⋅D2​)⊕(2^4⋅D3​)⊕(26⋅D4​)⊕(28⋅D5​)$$
+$$R=(2^0⋅D1​)⊕(2^2⋅D2​)⊕(2^4⋅D3​)⊕(2^6⋅D4​)⊕(2^8⋅D5​)$$
+
+* **D1​ (Shift 0):** `0000 0001`
+*  **D2​ (Shift 1):**  shifting `1100 0000` twice triggers _two_ overflows, wrapping it to **`0010 0111`**
+```
+  1000 0000 (Shifted Result) 
+⊕ 0001 1101 (Polynomial)
+  ------------------ 
+  1001 1101 
+  
+  0011 1010
+⊕ 0001 1101 (Polynomial)
+  ------------------ 
+  100 0111 
+```
 ### PS
 * Even when data is only stripe to one disk, parity P,Q and R still will be calculated, causing large parity overhead
 
