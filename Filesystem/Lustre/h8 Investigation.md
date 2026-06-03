@@ -98,3 +98,11 @@ grep -H . /sys/class/sas_phy/phy-*/sas_address
 grep -H . /sys/class/sas_phy/phy-*/negotiated_linkrate
 
 ```
+
+### Status 27/5
+```
+h8dat0008 and potentially some others still struggling:  
+  
+
+> [Wed May 27 08:54:17 2026] Lustre: ll_ost_io00_073: service thread pid 3255727 was inactive for 201.639 seconds. Watchdog stack traces are limited to 3 per 300 seconds, skipping this one.
+```
