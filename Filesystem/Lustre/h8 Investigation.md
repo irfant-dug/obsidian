@@ -99,7 +99,7 @@ grep -H . /sys/class/sas_phy/phy-*/negotiated_linkrate
 
 ```
 
-### Status 27/5
+### Status 27/05
 ```
 h8dat0008 and potentially some others still struggling:  
   
@@ -107,5 +107,8 @@ h8dat0008 and potentially some others still struggling:
 > [Wed May 27 08:54:17 2026] Lustre: ll_ost_io00_073: service thread pid 3255727 was inactive for 201.639 seconds. Watchdog stack traces are limited to 3 per 300 seconds, skipping this one.
 ```
 
+### Status 03/06
 * It is confirmed that the problem does not caused by the hardware. I am able to replicate the same problem happen on h8 using kpetronaslustre hardware
-* 
+```
+[adm_irfant@kud37 ~]$ pdsh -w "knod2-2-7,knod2-4-6,knod2-4-9,knod2-4-10,knod4-4-2" 'fio --name=zfs_sync_read --filename=/simh8/$HOSTNAME/sync_write/write_throughput.1.0 --rw=randread --bs=4k --direct=1 --ioengine=libaio --size=100G --numjobs=4 --iodepth=32 --group_reporting'
+```
