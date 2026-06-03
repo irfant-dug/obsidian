@@ -106,3 +106,6 @@ h8dat0008 and potentially some others still struggling:
 
 > [Wed May 27 08:54:17 2026] Lustre: ll_ost_io00_073: service thread pid 3255727 was inactive for 201.639 seconds. Watchdog stack traces are limited to 3 per 300 seconds, skipping this one.
 ```
+
+* It is confirmed that the problem does not caused by the hardware. I am able to replicate the same problem happen on h8 using kpetronaslustre hardware
+* 
