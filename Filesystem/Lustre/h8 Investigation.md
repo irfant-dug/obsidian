@@ -116,3 +116,9 @@ h8dat0008 and potentially some others still struggling:
 ```
 iostat -xmd 1 40 dm-9 dm-33 dm-6 dm-40 dm-1 dm-0 dm-14 dm-41 dm-15 dm-2 dm-39 dm-4 | tee iostat.sync.read & zpool iostat lustre -r 1 40 | tee zpool.iostat.sync.read & zpool iostat lustre 1 40 | tee zpool.iostat.v.sync.read
 ```
+
+### Status 04/06
+* Initial hypothesis that the problematic disks are throttling zpool is wrong. Offlining the problematic disks during log collection shows that the pool bandwidth and total I/O doesn't experience any improvement.
+* We know that it was sync read that throttle other IO. 
+* I don't know if epic20 is experiencing the same issue
+* 
