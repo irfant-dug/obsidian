@@ -33,3 +33,14 @@ Created symlink /etc/systemd/system/multi-user.target.wants/wg-quick@wg0.service
 * Enable port 51820 in firewalld
 * Ping VPN gateway (172.20.104.1) every 1 hour to keep the OpenVPN connection alive (/etc/cron.hourly/openvpn_keepalive.sh)
 * Set DNS server to gdns0001 (192.168.0.158)
+
+* Set static route to avoid wireguard from hijacking
+```
+[magus@gwireguard ~]$ sudo nmcli connection modify ens18 +ipv4.routes "96.9.168.174 192.168.0.1"
+[sudo] password for magus:
+[magus@gwireguard ~]$ sudo nmcli connection modify ens18 +ipv4.routes "193.228.10.100 192.168.0.1"
+[magus@gwireguard ~]$ ip route
+default via 192.168.0.1 dev ens18 proto static metric 100
+10.168.168.0/24 dev wg0 proto kernel scope link src 10.168.168.1
+192.168.0.0/24 dev ens18 proto kernel scope link src 192.168.0.154 metric 100
+```
