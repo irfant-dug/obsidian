@@ -112,3 +112,7 @@ h8dat0008 and potentially some others still struggling:
 ```
 [adm_irfant@kud37 ~]$ pdsh -w "knod2-2-7,knod2-4-6,knod2-4-9,knod2-4-10,knod4-4-2" 'fio --name=zfs_sync_read --filename=/simh8/$HOSTNAME/sync_write/write_throughput.1.0 --rw=randread --bs=4k --direct=1 --ioengine=libaio --size=100G --numjobs=4 --iodepth=32 --group_reporting'
 ```
+
+```
+iostat -xmd 1 40 dm-9 dm-33 dm-6 dm-40 dm-1 dm-0 dm-14 dm-41 dm-15 dm-2 dm-39 dm-4 | tee iostat.sync.read & zpool iostat lustre -r 1 40 | tee zpool.iostat.sync.read & zpool iostat lustre 1 40 | tee zpool.iostat.v.sync.read
+```
