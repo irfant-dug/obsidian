@@ -127,4 +127,6 @@ iostat -xmd 1 40 dm-9 dm-33 dm-6 dm-40 dm-1 dm-0 dm-14 dm-41 dm-15 dm-2 dm-39 dm
 #stripe to a specific ost
 lfs setstripe -i 1 -c 1 stripe_to_ost_1
 
+fio --name=zfs_sync_read --filename=/lustre_2/write_throughput.1.0 --rw=randread --bs=4k --direct=1 --ioengine=libaio --size=10G --numjobs=16 --iodepth=32 --group_reporti
+ng
 ```
