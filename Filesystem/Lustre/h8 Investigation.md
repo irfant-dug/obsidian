@@ -133,4 +133,4 @@ sudo zpool create  -f -o ashift=12 -O overlay=on -O atime=off -O recordsize=1M -
 ```
 
 * Seems to me that it's a zpool limitation. MDM raid is faster that ZFS. 
-* 
+
