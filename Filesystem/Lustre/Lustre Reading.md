@@ -11,4 +11,6 @@
 * zfs_txg_history=120
 	* For logging purpose. To know how long it took to sync to disk
 
-2. 
+2. https://wiki.lustre.org/OBDFilter_Survey
+* OBDFilter-Survey tests the performance of one or more OSTs by simulating Lustre client IO. Each OSS server in an installation is tested individually.
+* The `network` and `netdisk` modes are not normally used for benchmarking as they may produce unreliable results. Only `disks` test is reliable
