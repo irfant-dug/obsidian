@@ -14,6 +14,7 @@
 2. https://wiki.lustre.org/OBDFilter_Survey
 * OBDFilter-Survey tests the performance of one or more OSTs by simulating Lustre client IO. Each OSS server in an installation is tested individually.
 * The `network` and `netdisk` modes are not normally used for benchmarking as they may produce unreliable results. Only `disks` test is reliable
+* Tried using obdfilter-survey but they are abysmally slow
 
 2. [Lustre Benchmarking Tips And Tricks](https://wiki.lustre.org/images/4/40/Wednesday_shpc-2009-benchmarking.pdf)
 ### Tuning
