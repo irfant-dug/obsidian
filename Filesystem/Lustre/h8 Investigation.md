@@ -134,3 +134,10 @@ sudo zpool create  -f -o ashift=12 -O overlay=on -O atime=off -O recordsize=1M -
 
 * Seems to me that it's a zpool limitation. MDM raid is faster that ZFS. 
 
+```
+raidz3.12x.disks.lustre.sync.read.random.4k
+OUTPUT="/d/home/dug/adm_irfant/lustre_benchmark/local/raidz3.12x.disks.local.sync.read.random.4k.fio"; fio --name=zfs_sync_read --filename=/lustre/write_throughput.1.0 --rw=randread --bs=4k --direct=1 --ioengine=libaio --size=600M --numjobs=16 --iodepth=32 --group_reporting --output=$OUTPUT && du -sh /lustre/write_throughput.1.0 >> $OUTPUT; du -sh /lustre/write_throughput.1.0 --apparent-size >> $OUTPUTct=1 --ioengine=libaio --size=600M --numjobs=16 --iodepth=32 --group_reporting --output=$OUTPUT && du -sh /lustre/write_throughput.1.0 >> $OUTPUT; du -sh /lustre/write_throughput.1.0 --apparent-size >> $OUTPUT
+
+raidz3.12x.disks.lustre.sync.read.sequential.4k
+```
+
