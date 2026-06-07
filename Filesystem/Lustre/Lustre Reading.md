@@ -19,3 +19,14 @@
 ### Tuning
 * max_sectors_kb=max_hw_sectors_kb
 * Deadline scheduler
+
+3. [SGPDD Survey](https://wiki.lustre.org/SGPDD_Survey)
+* Part of lustre io_kit. Send scsi command to scsi disk, bypassing kernel and filsystem. Most accurate way to benchmark disk througput
+```
+crglo=1 crghi=256 \
+thrlo=1 thrhi=4096 \
+size=51200 \
+rslt_loc=/var/tmp/sgpdd-survey_out \
+scsidevs=$(zpool status lustre -Lv | grep -Eo "dm-[0-9]+"  | while read line; do sudo multipath -l | grep $line -A 5 | grep -Eo "sd[a-z]+" | head -1; done | sed 's/^/kpetronaslustre45:\/dev\//' | tr '\n' ' ' | sed 's/ $/\n/') \
+sgpdd-survey
+```
