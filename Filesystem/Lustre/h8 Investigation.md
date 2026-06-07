@@ -141,3 +141,11 @@ OUTPUT="/d/home/dug/adm_irfant/lustre_benchmark/local/raidz3.12x.disks.local.syn
 raidz3.12x.disks.lustre.sync.read.sequential.4k
 ```
 
+```
+Weird Behaviour
+- Lustre 4k sequential read, only 3 disks are active
+- Sync Read IO size very small. Easily aggregated
+pdsh -w "knod1-7-5,knod2-4-6,knod2-7-[17-18],knod3-7-10" 'fio --name=zfs_sync_read --filename=/simh8/$HOSTNAME/write_throughput.1.0 --rw=read --bs=4k --direct=1 --ioengine=libaio --size=4G --numjobs=4 --iodepth=32 --group_reporting' | dshbak -c
+
+
+```
