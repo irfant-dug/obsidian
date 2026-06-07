@@ -31,3 +31,7 @@ rslt_loc=/var/tmp/sgpdd-survey_out \
 scsidevs=$(zpool status lustre -Lv | grep -Eo "dm-[0-9]+"  | while read line; do sudo multipath -l | grep $line -A 5 | grep -Eo "sd[a-z]+" | head -1; done | sed 's/^/kpetronaslustre45:\/dev\//' | tr '\n' ' ' | sed 's/ $/\n/') \
 sgpdd-survey
 ```
+
+4. https://internals-for-interns.com/posts/zfs-filesystem/
+5. https://www.brendangregg.com/DTrace/DTrace_Chapter_5_File_Systems.pdf
+6. 
