@@ -151,3 +151,25 @@ pdsh -w "knod1-7-5,knod2-4-6,knod2-7-[17-18],knod3-7-10" 'fio --name=zfs_sync_re
 
 * Testing of hw_block
 * https://ronekins.com/2024/01/16/how-to-reduce-linux-block-storage-io-sizes/
+
+### Status 08/06
+* We can simulate the 4k sequential write/read using dd
+```
+dd if=/dev/null of=/simh8/knod1-7-5/test bs=4k count=1024000 status=progress
+```
+
+### Status 11/06
+```
+Local
+4k File: 
+	4k Read:
+		6.6MBps - 3 disks 95% 9 disks 70%, IO 64K
+	1M Read
+		dm-15 at 100%
+		
+		
+1M File: 
+	4k Read:
+		6.6MBps - 3 disks 95% 9 disks 70%, IO 64K
+	1M Read	
+```
