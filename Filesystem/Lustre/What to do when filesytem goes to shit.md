@@ -9,9 +9,14 @@ LicenseName=h8@houston
 LicenseName=ioh8@houston
     Total=80 Used=1 Free=79 Reserved=0 Remote=yes
     LastConsumed=0 LastDeficit=0 LastUpdate=2026-06-01T11:07:28
-```
-```
-
+----------------------------------------------------------------------------    
+[adm_irfant@pud33 ~]$ scontrol show licenses iope1@perth; scontrol show licenses pe1@perth;
+LicenseName=iope1@perth
+    Total=500 Used=0 Free=500 Reserved=0 Remote=yes
+    LastConsumed=0 LastDeficit=0 LastUpdate=2024-10-01T14:58:40
+LicenseName=pe1@perth
+    Total=10000 Used=1113 Free=8887 Reserved=0 Remote=yes
+    LastConsumed=0 LastDeficit=0 LastUpdate=2022-12-21T23:30:41
 ```
 
 What to do when thing goes to shit
