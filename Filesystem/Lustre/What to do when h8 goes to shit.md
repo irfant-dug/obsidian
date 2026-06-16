@@ -21,4 +21,8 @@ sacctmgr modify resource name=h8 server=houston set count=2200 --immediate
 * Find the job with high
 ```
 scontrol update ArrayTaskThrottle=10 jobid=30971547,30971545,30951720,30971553
+scontrol requeue "40684146_[64700-64811]"
+
+scontrol update ArrayTaskThrottle=100 job=29996878
+scontrol requeue 29996878_[200-438]
 ```
