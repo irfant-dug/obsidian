@@ -28,3 +28,4 @@ scontrol requeue 29996878_[200-438]
 ```
 
 Currently, we are focusing on bandwidth and disk utilization to control h8. One way we can look at is to monitor the IOPS. If it is unusually high alongside high read bandwidth, this may point to **Read amplification** phenomenon. Find the file the user that send a lot of this small read IO and throttle it.
+Actually, ARC will take care of this for us. Record that is being read multiple time will be stored in ARC.
