@@ -26,3 +26,5 @@ scontrol requeue "40684146_[64700-64811]"
 scontrol update ArrayTaskThrottle=100 job=29996878
 scontrol requeue 29996878_[200-438]
 ```
+
+Currently, we are focusing on bandwidth and disk utilization to control h8. One way we can look at is to monitor the IOPS. If it is unusually high alongside high read bandwidth, this may point to **Read amplification** phenomenon. Find the file the user that send a lot of this small read IO and throttle it.
