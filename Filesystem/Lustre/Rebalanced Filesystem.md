@@ -1,4 +1,4 @@
-[[lustre]]
+[[Lustre]]
 
 claude memory: lustre_rebalance
 ```

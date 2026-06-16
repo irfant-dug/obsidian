@@ -1,4 +1,4 @@
-[[lustre]]
+[[Lustre]]
 * lshowmount - show client that mounted lustre
 ```
 [adm_irfant@kpetronaslustre00 /]$ lshowmount

@@ -1,4 +1,4 @@
-[[lustre]]
+[[Lustre]]
 
 * Mount lustre
 ```

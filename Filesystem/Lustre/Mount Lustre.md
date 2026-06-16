@@ -1,4 +1,4 @@
-[[lustre]]
+[[Lustre]]
 ```
 zpool import -a
 ```

@@ -1,4 +1,4 @@
-[[lustre]]
+[[Lustre]]
 
 * Get controller with Drives
 ```
