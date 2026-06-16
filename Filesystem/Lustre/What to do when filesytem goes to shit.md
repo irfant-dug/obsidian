@@ -20,11 +20,15 @@ sacctmgr modify resource name=h8 server=houston set count=2200 --immediate
 
 * Find the job with high
 ```
+#This will update all tasks for the given jobid. If immediate reduction in running tasks is required you will need to requeue them (select the tasks that have been running for the shortest time)
+
 scontrol update ArrayTaskThrottle=10 jobid=30971547,30971545,30951720,30971553
 scontrol requeue "40684146_[64700-64811]"
 
 scontrol update ArrayTaskThrottle=100 job=29996878
 scontrol requeue 29996878_[200-438]
+
+
 ```
 
 Currently, we are focusing on bandwidth and disk utilization to control h8. One way we can look at is to monitor the IOPS. If it is unusually high alongside high read bandwidth, this may point to **Read amplification** phenomenon. Find the file the user that send a lot of this small read IO and throttle it.
