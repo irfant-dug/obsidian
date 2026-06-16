@@ -33,3 +33,12 @@ scontrol requeue 29996878_[200-438]
 
 Currently, we are focusing on bandwidth and disk utilization to control h8. One way we can look at is to monitor the IOPS. If it is unusually high alongside high read bandwidth, this may point to **Read amplification** phenomenon. Find the file the user that send a lot of this small read IO and throttle it.
 Actually, ARC will take care of this for us. Record that is being read multiple time will be stored in ARC.
+
+```
+#list job by licence
+squeue -O "JobID,Username,Name,State,Licenses" | awk 'NR==1 || /pe1@perth/'
+
+#iostat by 3 hot disks at top
+S_COLORS=always stdbuf -oL iostat -y -xmd 1 $(zpool status lustre -L | grep -Eo "sd[a-z]+" | tr '\n' ' ') | awk -v tops="$(zpool status lustre -L | grep -Eo 'sd[a-z]+' | sed -n '4p;8p;12p' | tr '\n' ' ')" 'BEGIN { split(tops, arr, " "); for(i in arr) if (arr[i] != "") top_map[arr[i]]=1; } /^Linux/ || /^Device/ { print; fflush(); next; } NF == 0 { if (t > 0 || r > 0) { for(i=1; i<=t; i++) print top[i]; n = asort(rest, sorted); for(i=1; i<=n; i++) print sorted[i]; print ""; delete top; delete rest; t = 0; r = 0; fflush(); } next; } { is_top = 0; for (dev in top_map) { if ($1 ~ dev) { is_top = 1; break; } } if (is_top) { top[++t] = $0; } else { rest[++r] = $0; } }'
+
+```
