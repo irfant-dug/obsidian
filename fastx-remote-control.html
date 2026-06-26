@@ -1,0 +1,445 @@
+<title>Remote Control a FastX Session — DUG IT Runbook</title>
+<meta name="description" content="Step-by-step admin procedure for shadowing a live FastX session on a DUG compute node using x11vnc.">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #F4F7FB;
+    --surface:   #FFFFFF;
+    --border:    #D3DCE8;
+    --text:      #1A2438;
+    --muted:     #5C6B82;
+    --accent:    #2A7F94;
+    --accent-lt: #E3F2F6;
+    --warn-bg:   #FEF5E7;
+    --warn-bdr:  #C97B0A;
+    --warn-text: #7A4900;
+    --term-bg:   #0D1520;
+    --term-text: #C9E4EA;
+    --term-dim:  #5A7A8A;
+    --step-num:  #D3DCE8;
+    --radius:    6px;
+  }
+
+  html { background: var(--bg); }
+
+  body {
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--text);
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* ── Header ── */
+  .doc-header {
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 24px;
+    margin-bottom: 48px;
+  }
+
+  .doc-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .doc-title {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text);
+    text-wrap: balance;
+    margin-bottom: 12px;
+  }
+
+  .doc-subtitle {
+    font-size: 14px;
+    color: var(--muted);
+    max-width: 560px;
+  }
+
+  /* ── When to use ── */
+  .prereqs {
+    background: var(--accent-lt);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 16px 20px;
+    margin-bottom: 40px;
+    font-size: 14px;
+  }
+
+  .prereqs strong { color: var(--accent); display: block; margin-bottom: 6px; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
+  .prereqs ul { padding-left: 18px; }
+  .prereqs li { margin-bottom: 4px; }
+
+  /* ── Steps ── */
+  .steps { display: flex; flex-direction: column; gap: 0; }
+
+  .step {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 0 20px;
+    padding-bottom: 40px;
+    position: relative;
+  }
+
+  /* connector line */
+  .step:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: 22px;
+    top: 44px;
+    bottom: 0;
+    width: 2px;
+    background: var(--border);
+  }
+
+  .step-num {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--accent);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .step-body { padding-top: 10px; }
+
+  .step-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .step-desc {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 14px;
+    line-height: 1.6;
+  }
+
+  /* ── Terminal blocks ── */
+  .terminal {
+    background: var(--term-bg);
+    border-radius: var(--radius);
+    overflow-x: auto;
+    margin-bottom: 12px;
+  }
+
+  .terminal-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 14px 8px;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+  }
+
+  .terminal-bar .dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+  .dot-r { background: #FF5F57; }
+  .dot-y { background: #FEBC2E; }
+  .dot-g { background: #28C840; }
+
+  .terminal-label {
+    font-size: 11px;
+    color: var(--term-dim);
+    margin-left: auto;
+    font-family: 'Cascadia Code', 'Fira Code', 'Courier New', monospace;
+  }
+
+  .terminal pre {
+    padding: 16px 18px;
+    font-family: 'Cascadia Code', 'Fira Code', 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--term-text);
+    white-space: pre;
+  }
+
+  .term-comment { color: var(--term-dim); }
+  .term-prompt  { color: #5A9EB8; user-select: none; }
+  .term-cmd     { color: #C9E4EA; }
+  .term-flag    { color: #7EC8D8; }
+  .term-path    { color: #A3D4B8; }
+  .term-out     { color: #7A9AAA; }
+  .term-hi      { color: #FFD580; }
+
+  /* ── Warning / Note callouts ── */
+  .callout {
+    border-left: 3px solid var(--warn-bdr);
+    background: var(--warn-bg);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 13px 16px;
+    font-size: 13px;
+    color: var(--warn-text);
+    margin-bottom: 14px;
+  }
+
+  .callout strong {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .callout.info {
+    border-color: var(--accent);
+    background: var(--accent-lt);
+    color: #1A4F5C;
+  }
+
+  .callout.info strong { color: var(--accent); }
+
+  /* ── Cleanup section ── */
+  .cleanup {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-top: 8px;
+  }
+
+  .cleanup h3 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .cleanup ul {
+    padding-left: 18px;
+    font-size: 14px;
+    color: var(--text);
+  }
+
+  .cleanup li { margin-bottom: 6px; }
+
+  /* ── Footer ── */
+  .doc-footer {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  code {
+    font-family: 'Cascadia Code', 'Fira Code', 'Courier New', monospace;
+    font-size: 12.5px;
+    background: #E8EFF7;
+    color: #2A5A6A;
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+
+  @media (max-width: 500px) {
+    .step { grid-template-columns: 44px 1fr; }
+    .step-num { width: 36px; height: 36px; font-size: 13px; }
+    .step:not(:last-child)::before { left: 17px; top: 38px; }
+  }
+</style>
+
+<header class="doc-header">
+  <p class="doc-eyebrow">DUG IT · Admin Runbook</p>
+  <h1 class="doc-title">Remote Control a User's FastX Session</h1>
+  <p class="doc-subtitle">How to shadow a live FastX desktop on a compute node using x11vnc — for cases where a user is unavailable and their session needs interaction (e.g. saving an open Insight project).</p>
+</header>
+
+<div class="prereqs">
+  <strong>When to use this</strong>
+  <ul>
+    <li>A user is absent (holiday, unreachable) and has a live session with unsaved work</li>
+    <li>The session is on a node scheduled for maintenance</li>
+    <li>You have <code>sudo</code> access on the target node</li>
+  </ul>
+</div>
+
+<div class="steps">
+
+  <!-- Step 1 -->
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <h2 class="step-title">Identify the session and confirm the app is running</h2>
+      <p class="step-desc">SSH to the target node and check who has active sessions. Then confirm the application process is still alive.</p>
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+          <span class="terminal-label">node shell</span>
+        </div>
+        <pre><span class="term-comment"># List all sessions — note the session ID and UID</span>
+<span class="term-prompt">$ </span><span class="term-cmd">loginctl</span>
+<span class="term-out">SESSION  UID   USER              STATE
+    73   3674  rockwave_connorb  closing   ← target session</span>
+
+<span class="term-comment"># Confirm the application is still running</span>
+<span class="term-prompt">$ </span><span class="term-cmd">ps -u rockwave_connorb -o pid,stat,cmd --no-header | grep -i insight</span>
+<span class="term-out"> 542106 S  /bin/bash /d/sw/Insight/6.1-512241/_insight ...</span></pre>
+      </div>
+      <div class="callout">
+        <strong>Note</strong>
+        A session state of <code>closing</code> is normal for FastX — the session is still active. Confirm by checking for live application processes.
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 2 -->
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <h2 class="step-title">Get the DISPLAY and XAUTHORITY from the running process</h2>
+      <p class="step-desc">Read the environment of the application process to find the X display number and the user's auth file.</p>
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+          <span class="terminal-label">node shell</span>
+        </div>
+        <pre><span class="term-prompt">$ </span><span class="term-cmd">sudo cat /proc/<span class="term-hi">&lt;pid&gt;</span>/environ | tr '\0' '\n' | grep -E 'DISPLAY|XAUTHORITY'</span>
+
+<span class="term-out">DISPLAY=<span class="term-hi">hrud3-17-39:101</span>
+XAUTHORITY=<span class="term-path">/d/home/rockwave/rockwave_connorb/.fastx_server/hrud3-17-39/sessions/FX3-&lt;id&gt;/authority</span></span></pre>
+      </div>
+      <div class="callout info">
+        <strong>Tip</strong>
+        Note the display <em>number only</em> (e.g. <code>101</code>). You will use <code>:101</code> — not <code>hostname:101</code> — in the next step.
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 3 -->
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <h2 class="step-title">Start x11vnc as the session owner</h2>
+      <p class="step-desc">Run x11vnc as the user — not as root. The X server's shared memory segments are owned by the session user; running as root causes an SHM permission failure that crashes x11vnc on connect.</p>
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+          <span class="terminal-label">node shell</span>
+        </div>
+        <pre><span class="term-prompt">$ </span><span class="term-cmd">sudo -u <span class="term-hi">rockwave_connorb</span> x11vnc \
+    -display <span class="term-hi">:101</span> \
+    -auth <span class="term-path">/d/home/rockwave/rockwave_connorb/.fastx_server/hrud3-17-39/sessions/FX3-&lt;id&gt;/authority</span> \
+    -rfbport 5902 \
+    -localhost -forever -shared -nopw</span>
+
+<span class="term-out">Listening for VNC connections on TCP port 5902</span></pre>
+      </div>
+      <div class="callout">
+        <strong>Critical</strong>
+        Use <code>:101</code> (local format), <strong>not</strong> <code>hostname:101</code>. The hostname format forces a network SHM path that fails and exits x11vnc immediately when a client connects.
+      </div>
+      <div class="callout info">
+        <strong>Security</strong>
+        <code>-nopw</code> is safe here because <code>-localhost</code> limits connections to the loopback interface — the SSH tunnel in the next step is the only way in.
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 4 -->
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <h2 class="step-title">Open an SSH tunnel from your local machine</h2>
+      <p class="step-desc">In a new terminal on your local workstation, forward port 5902 through your admin SSH session.</p>
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+          <span class="terminal-label">local workstation</span>
+        </div>
+        <pre><span class="term-prompt">$ </span><span class="term-cmd">ssh -L 5902:localhost:5902 adm_irfant@<span class="term-hi">&lt;node&gt;</span></span></pre>
+      </div>
+      <p class="step-desc">Keep this terminal open for the duration of the session.</p>
+    </div>
+  </div>
+
+  <!-- Step 5 -->
+  <div class="step">
+    <div class="step-num">5</div>
+    <div class="step-body">
+      <h2 class="step-title">Connect your VNC viewer</h2>
+      <p class="step-desc">With the tunnel active, connect to the forwarded port on localhost. No password is required.</p>
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+          <span class="terminal-label">local workstation</span>
+        </div>
+        <pre><span class="term-prompt">$ </span><span class="term-cmd">vncviewer localhost:5902</span>
+<span class="term-comment"># or Remmina → vnc://localhost:5902</span></pre>
+      </div>
+      <p class="step-desc">You should see the user's desktop. If it shows a lock screen, proceed to step 6.</p>
+    </div>
+  </div>
+
+  <!-- Step 6 -->
+  <div class="step">
+    <div class="step-num">6</div>
+    <div class="step-body">
+      <h2 class="step-title">Unlock the desktop if locked</h2>
+      <p class="step-desc">If the session shows a screensaver or login prompt, unlock it from the node shell without needing the user's password.</p>
+      <div class="terminal">
+        <div class="terminal-bar">
+          <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+          <span class="terminal-label">node shell</span>
+        </div>
+        <pre><span class="term-prompt">$ </span><span class="term-cmd">sudo loginctl unlock-session <span class="term-hi">73</span></span></pre>
+      </div>
+      <p class="step-desc">Switch back to the VNC viewer — the desktop should now be accessible.</p>
+    </div>
+  </div>
+
+  <!-- Step 7 -->
+  <div class="step">
+    <div class="step-num">7</div>
+    <div class="step-body">
+      <h2 class="step-title">Do what's needed, then clean up</h2>
+      <p class="step-desc">Interact with the desktop — save the project, close dialogs, etc. When finished, clean up promptly.</p>
+      <div class="cleanup">
+        <h3>Cleanup checklist</h3>
+        <ul>
+          <li>Disconnect the VNC viewer</li>
+          <li>Press <strong>Ctrl+C</strong> in the x11vnc terminal on the node to stop it</li>
+          <li>Close the SSH tunnel terminal</li>
+          <li>Verify the application is still running normally: <code>ps -u &lt;user&gt; | grep insight</code></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /steps -->
+
+<div class="callout info" style="margin-top: 8px;">
+  <strong>Backup alternative — no session interaction needed</strong>
+  Insight writes a crash-recovery backup every 5 minutes to <code>&lt;project&gt;/db/.backup/</code> while a session is running. If the node is stable and won't be rebooted, the data is already preserved — no VNC shadowing required. See ZD#362836 for the manual restore procedure.
+</div>
+
+<footer class="doc-footer">
+  <span>DUG IT · Remote Administration</span>
+  <span>Applies to: FastX 3, Insight 6.x, RHEL 9 nodes</span>
+</footer>
