@@ -31,3 +31,15 @@ DUG_LICENSE=PLAT-LP5P-VX3A-YQDK-0NK9-8J
 DUG_LICENSE_SERVER=plic0001:8080
 USE_DUG_LICENSE=true
 ```
+4. https://downunder.zendesk.com/agent/tickets/363229
+* Slurm library not found
+* Solution: Restart FastX and Insight
+```
+ps-insight
+loginctl | grep mohamedhm
+cat /proc/3865352/cgroup - which session open insight
+sudo tr '\0' '\n' < /proc/3865352/environ | grep -E 'LD_LIBRARY_PATH|XDG_SESSION_ID'  - do the process set the ENV
+ls -lt /data/pe1/dug/apac/teamtioman/petronas/baramwPr_501_MC/.logs/insight.*mohamedhm*.log | head
+grep -c "Library not found : slurm" \
+  .../.logs/insight.2026-07-03_141601.mohamedhm.3865262.log
+```
