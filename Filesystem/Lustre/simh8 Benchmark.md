@@ -25,4 +25,12 @@ zpool create -f -o ashift=12 -O overlay=on -O atime=off -O recordsize=1M -O comp
 zpool create -f -o ashift=12 -O overlay=on -O atime=off -O recordsize=1M -O compression=lz4 -O dnodesize=auto lustre raidz2 /dev/sdc /dev/sde /dev/sdg /dev/sdi /dev/sday /dev/sdba /dev/sdbc /dev/sdbe /dev/sdbo /dev/sdbq /dev/sdbs
 ```
 * 1M sequential read shows very hot first and last disk. Why the fuck
-* 
+
+
+```
+- 4k
+for i in $(seq 1 10240); do dd if=/dev/urandom of=4k.$i bs=4k count=1 ; done; while true; do sudo sync; echo 3 | sudo tee /proc/sys/vm/drop_caches; for i in $(seq 1 10240); do dd if=4k.$i of=/dev/null; done; done;
+
+- 1M Seq
+
+```
