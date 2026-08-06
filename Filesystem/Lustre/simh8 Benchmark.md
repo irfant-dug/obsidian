@@ -17,3 +17,5 @@ zpool create -f -o ashift=12 -O overlay=on -O atime=off -O recordsize=1M -O comp
 ```
 zpool create -f -o ashift=12 -O overlay=on -O atime=off -O recordsize=1M -O compression=lz4 -O dnodesize=auto lustre raidz2 /dev/sdc /dev/sde /dev/sdg /dev/sdi /dev/sday /dev/sdba /dev/sdbc /dev/sdbe /dev/sdbo /dev/sdbq /dev/sdbs
 ```
+* 1M sequential read shows very hot first and last disk. Why the fuck
+* 
