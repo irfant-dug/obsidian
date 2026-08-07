@@ -19,7 +19,7 @@ zpool create -f -o ashift=12 -O overlay=on -O atime=off -O recordsize=1M -O comp
 
 * 4k show only 3 disks utilize
 * sdbs show lower util during 1M file write. Probably an always skip sector. Reading is fine
-* 
+	* 
 
 
 3. RAIDz2 11-disks
