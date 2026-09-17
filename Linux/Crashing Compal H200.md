@@ -12,3 +12,10 @@ for i in $(seq 1 $N); do
 done
 wait
 ```
+
+Makedump
+```
+makedumpfile --dump-dmesg /proc/vmcore /tmp/vmcore-dmesg.txt
+{ echo "###VMCORE-BEGIN###"; tail -n 250 /tmp/vmcore-dmesg.txt; echo "###VMCORE-END###"; } > /dev/ttyS0
+{ echo "###FULL-BEGIN###"; cat /tmp/vmcore-dmesg.txt; echo "###FULL-END###"; } > /dev/ttyS0
+```
