@@ -178,8 +178,8 @@ Local
 kpetronaslustre
 ```
 eval $(ssh-agent); ssh-add
-pdsh -w "it-kl" 'mkdir -p ~/stuff/kpetronaslustre/kpetronaslustre-11/';
+pdsh -w "it-kl" 'mkdir -p ~/stuff/kpetronaslustre/kpetronaslustre-12/';
 
-pdsh -g "filesystem=epic20" '/bin/unbuffer /bin/iostat -xmd 10 30 | tee -a ${HOSTNAME}_iostat_$(date +%Y%m%d_%H%M) & /usr/sbin/zpool iostat -r 10 300 | tee -a ${HOSTNAME}_zpool_iostat_r_$(date +%Y%m%d_%H%M) & /usr/sbin/zpool iostat -v 10 30 | tee -a ${HOSTNAME}_zpool_iostat_v_$(date +%Y%m%d_%H%M) & /usr/sbin/zpool iostat -vr 10 30 | tee -a ${HOSTNAME}_zpool_iostat_vr_$(date +%Y%m%d_%H%M); /bin/rsync -av -e "ssh -o StrictHostKeyChecking=no" ~/* adm_irfant@it-kl:~/stuff/kpetronaslustre/kpetronaslustre-11/' 
+pdsh -g "filesystem=epic20" '/bin/unbuffer /bin/iostat -xmd 10 30 | tee -a ${HOSTNAME}_iostat_$(date +%Y%m%d_%H%M) & /usr/sbin/zpool iostat -r 10 30 | tee -a ${HOSTNAME}_zpool_iostat_r_$(date +%Y%m%d_%H%M) & /usr/sbin/zpool iostat -v 10 30 | tee -a ${HOSTNAME}_zpool_iostat_v_$(date +%Y%m%d_%H%M) & /usr/sbin/zpool iostat -vr 10 30 | tee -a ${HOSTNAME}_zpool_iostat_vr_$(date +%Y%m%d_%H%M); /bin/rsync -av -e "ssh -o StrictHostKeyChecking=no" ~/* adm_irfant@it-kl:~/stuff/kpetronaslustre/kpetronaslustre-12/' 
 pdsh -w "it-kl" 'ls -1 ~/stuff/h8/h8_temp/ | head -1 | awk -F '_' "{print \$(NF-1),\$NF}" | while read line; do echo $line | tr " " "_" | xargs -I {} mv ~/stuff/h8/h8_temp ~/stuff/h8/{}; done';
 ```
