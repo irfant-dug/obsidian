@@ -12,3 +12,8 @@
 172.18.255.[6,61]@tcp
 172.18.50.153@tcp
 ```
+
+* Lustre client state
+```
+lctl get_param -n osc.h8-OST00*.import | grep -i state
+```
