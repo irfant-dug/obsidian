@@ -17,3 +17,7 @@
 ```
 lctl get_param -n osc.h8-OST00*.import | grep -i state
 ```
+* list which server each OST lives on
+```
+lctl get_param osc.h8-OST*.ost_conn_uuid
+```
