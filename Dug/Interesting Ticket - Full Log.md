@@ -1,5 +1,3 @@
-1. https://downunder.zendesk.com/agent/tickets/370767 - Job fail - tomosolve node/connection issues
-2. https://downunder.zendesk.com/agent/tickets/370845 - Houston tank 5-1 (Rocky 9.6 KNL) kernel panics in vastnfs client "dev" build - please rebuild image with latest vastnfs 4.5
 3. https://downunder.zendesk.com/agent/tickets/370789 - disk I/O error
 ```
 What ZD#370789 is
@@ -242,7 +240,7 @@ Zendesk comments can't be edited, so I haven't posted this. If the node check co
 [4] https://downunder.zendesk.com/agent/tickets/170715
 
 ```
-5. sadas
+5. https://downunder.zendesk.com/agent/tickets/370469 - Node failures potentially related to dugwave checkpoint writes
 ```
  https://downunder.zendesk.com/agent/tickets/370469
 
