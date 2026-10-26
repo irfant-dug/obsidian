@@ -12,7 +12,9 @@ This gotta be my fault. In IT-7563, I foresee no problem, everything works fine.
 Apparently, when OST is turned back on, especially for an active client, the connection have to be restarted with lfs df (this will ping the OSTs/MDTs). First lfs df will show endpoint shutdown (effect of non-restarted connection OST).
 
 There's supposed to be some differents betwen conf_param and set_param -p. Yet to be tested but theoretical different as below:
-1. 
-
+1. Store in filesystem config log | Store in separate params log
+2. Apply in kernel | Kernel raises an event and udev run set_param
+3. If fail - cfg command failed, and the client stops, records wait until something else changes that log | udev logs a non-zero exit code. The kernel carries on with the next record
+4. Extra effect of active=0 - Also marks the OST as excluded in its setup section | nothing
 ```
 7. a
